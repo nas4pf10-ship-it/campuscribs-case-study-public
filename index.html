@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101827">
+  <meta name="description" content="CampusCribs — a technical case study of a multi-role student accommodation discovery and reservation platform.">
+  <title>CampusCribs — Engineering Case Study</title>
+  <style>
+    :root{color-scheme:dark;--bg:#0b1220;--panel:#111c2e;--panel2:#152238;--ink:#edf3fb;--muted:#a8b7ca;--line:#26364d;--accent:#8bd3c7;--blue:#8db7ff;--warn:#f5cb82;--max:1080px}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:radial-gradient(ellipse at 75% -15%,#1b3550 0,transparent 42%),var(--bg);color:var(--ink);font:16px/1.7 Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    a{color:var(--accent);text-underline-offset:4px}a:hover{color:#c0f1e8}.wrap{width:min(var(--max),calc(100% - 40px));margin:auto}
+    header{padding:26px 0;border-bottom:1px solid var(--line)}.nav{display:flex;justify-content:space-between;align-items:center;gap:20px}.brand{font-weight:750;letter-spacing:.02em}.nav small{color:var(--muted)}
+    .hero{padding:92px 0 70px}.eyebrow{color:var(--accent);font-size:.78rem;font-weight:750;letter-spacing:.16em;text-transform:uppercase}.hero h1{font-size:clamp(2.8rem,7vw,5.6rem);line-height:1.02;letter-spacing:-.06em;max-width:850px;margin:18px 0}.hero p{font-size:1.2rem;color:var(--muted);max-width:760px}.pills{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}.pill{border:1px solid var(--line);border-radius:999px;padding:6px 12px;color:#d5e2f1;font-size:.85rem}
+    .notice{background:#342a1b;border:1px solid #6e5631;color:#f7e5c5;border-radius:14px;padding:17px 20px;margin:12px 0 34px}.notice strong{color:#ffe2a7}
+    main{padding-bottom:80px}section{padding:54px 0;border-top:1px solid var(--line)}h2{font-size:clamp(1.7rem,3vw,2.4rem);line-height:1.15;letter-spacing:-.035em;margin:0 0 16px}h3{font-size:1.12rem;margin:0 0 8px}p{margin:0 0 14px}.lead{color:var(--muted);max-width:800px}
+    .grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:24px}.grid.two{grid-template-columns:repeat(2,minmax(0,1fr))}.card{background:linear-gradient(145deg,var(--panel),#0e1828);border:1px solid var(--line);border-radius:16px;padding:22px}.card p,.card li{color:var(--muted);font-size:.95rem}.card ul{padding-left:19px;margin:8px 0 0}
+    .stack{display:flex;flex-wrap:wrap;gap:9px;margin-top:18px}.stack span{background:var(--panel2);border:1px solid var(--line);border-radius:8px;padding:7px 11px;color:#dce8f7;font-size:.9rem}
+    .flow{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:24px 0}.step{border:1px solid var(--line);background:var(--panel);border-radius:12px;padding:16px}.step b{display:block;color:var(--accent);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}.step span{font-weight:650}
+    .architecture{background:#0d1727;border:1px solid var(--line);border-radius:16px;padding:22px;margin-top:22px}.archrow{display:flex;flex-wrap:wrap;justify-content:center;gap:9px}.node{border:1px solid #38506e;background:#14243a;border-radius:10px;padding:12px 15px;text-align:center;min-width:140px}.node small{display:block;color:var(--muted)}.arrow{text-align:center;color:var(--accent);font-size:1.4rem;line-height:1.7}
+    .callout{border-left:3px solid var(--warn);background:#241f19;padding:16px 19px;border-radius:0 12px 12px 0;margin:20px 0}.callout p{color:#e8d7b9;margin:5px 0 0}.muted{color:var(--muted)}.list{padding-left:20px}.list li{margin:8px 0;color:var(--muted)}
+    footer{border-top:1px solid var(--line);padding:30px 0 50px;color:var(--muted);font-size:.9rem}.footerrow{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+    @media(max-width:760px){.grid,.grid.two{grid-template-columns:1fr}.flow{grid-template-columns:repeat(2,1fr)}.hero{padding:64px 0 48px}.nav{align-items:flex-start;flex-direction:column}}
+    @media(max-width:420px){.flow{grid-template-columns:1fr}.wrap{width:min(var(--max),calc(100% - 28px))}}
+  </style>
+</head>
+<body>
+<header><div class="wrap nav"><div class="brand">CAMPUSCRIBS <span style="color:var(--accent)">/</span> CASE STUDY</div><small>Independent software project · Ghana</small></div></header>
+<div class="wrap">
+  <div class="hero">
+    <div class="eyebrow">Product engineering · Full-stack web application</div>
+    <h1>Making student accommodation easier to navigate.</h1>
+    <p>CampusCribs is a multi-role accommodation discovery and reservation platform concept connecting students, hostel owners and administrators through dedicated workflows.</p>
+    <div class="pills"><span class="pill">React 18</span><span class="pill">TypeScript</span><span class="pill">Supabase</span><span class="pill">PostgreSQL</span><span class="pill">Edge Functions</span><span class="pill">Paystack integration code</span></div>
+  </div>
+  <div class="notice"><strong>Project transparency.</strong> This is an independent portfolio project, not a claim of commercial deployment or verified user adoption. The case study describes implementation visible in the source repository and clearly identifies areas that still need validation.</div>
+  <main>
+    <section id="overview">
+      <div class="eyebrow">01 / Overview</div><h2>One platform, three user journeys.</h2>
+      <p class="lead">The product is organized around the different responsibilities involved in finding and managing student accommodation. The engineering challenge is to keep those workflows distinct while coordinating identity, listing data and reservation state.</p>
+      <div class="grid">
+        <article class="card"><h3>Students</h3><p>Explore accommodation, inspect hostel and room details, and follow reservation requests.</p></article>
+        <article class="card"><h3>Hostel owners</h3><p>Manage hostel and room information, review incoming reservations, and confirm or decline requests.</p></article>
+        <article class="card"><h3>Administrators</h3><p>Use a protected administration area for hostel review, verification and moderation workflows.</p></article>
+      </div>
+    </section>
+    <section id="architecture">
+      <div class="eyebrow">02 / Architecture</div><h2>A typed frontend backed by explicit server operations.</h2>
+      <p class="lead">The application uses a React client with Supabase services for authentication, relational data and domain operations. Edge Functions contain server-side integration logic.</p>
+      <div class="architecture">
+        <div class="archrow"><div class="node">Student workspace<small>Discovery · Reservations</small></div><div class="node">Host workspace<small>Listings · Booking actions</small></div><div class="node">Admin workspace<small>Review · Moderation</small></div></div>
+        <div class="arrow">↓</div>
+        <div class="archrow"><div class="node">React + TypeScript<small>React Router · TanStack Query</small></div></div>
+        <div class="arrow">↓</div>
+        <div class="archrow"><div class="node">Supabase Auth<small>Identity</small></div><div class="node">PostgreSQL + RPCs<small>Data · Reservation operations</small></div><div class="node">Edge Functions<small>Server-side integrations</small></div></div>
+        <div class="arrow">↓</div><div class="archrow"><div class="node">Paystack API<small>Payment integration path</small></div></div>
+      </div>
+      <div class="stack"><span>React 18</span><span>TypeScript</span><span>Vite</span><span>React Router</span><span>TanStack Query</span><span>Tailwind CSS</span><span>Radix UI</span><span>Supabase Auth</span><span>PostgreSQL</span><span>Deno Edge Functions</span><span>Vite PWA / Workbox</span></div>
+      <p class="muted" style="font-size:.88rem;margin-top:14px">Logical architecture overview, not a complete deployment topology or proof of every database security boundary.</p>
+    </section>
+    <section id="workflows">
+      <div class="eyebrow">03 / Core workflow</div><h2>Reservation lifecycle.</h2>
+      <p class="lead">Key booking transitions are routed through named backend operations rather than being represented only as local interface state.</p>
+      <div class="flow"><div class="step"><b>Step 01</b><span>Discover a hostel</span></div><div class="step"><b>Step 02</b><span>Select a room</span></div><div class="step"><b>Step 03</b><span>Request reservation</span></div><div class="step"><b>Step 04</b><span>Host reviews request</span></div></div>
+      <div class="grid two">
+        <article class="card"><h3>Backend operations</h3><p>Inspected booking hooks call database operations including <code>reserve_room</code>, <code>student_contacted_host</code>, <code>host_confirm_student_booking</code> and <code>host_decline_booking</code>.</p></article>
+        <article class="card"><h3>Consistency considerations</h3><p>Reservation systems need authoritative state transitions, valid room references, concurrency handling and consistent student/host views. Migration logic inspected includes row-locking behavior; full deployed guarantees still require testing.</p></article>
+      </div>
+    </section>
+    <section id="engineering">
+      <div class="eyebrow">04 / Engineering decisions</div><h2>Make important domain actions explicit.</h2>
+      <div class="grid two">
+        <article class="card"><h3>Role-specific workspaces</h3><p>Dedicated student, host and administrator route areas make each user journey clearer. Route checks are a navigation and UX control, not a replacement for database authorization.</p></article>
+        <article class="card"><h3>Backend-owned booking transitions</h3><p>Named RPC operations provide a central place for reservation rules. Their correctness depends on database logic, permissions and policies being tested alongside the frontend.</p></article>
+        <article class="card"><h3>Server-side payment integration</h3><p>Edge Functions keep provider secret handling out of browser code. Payment and booking state still need careful reconciliation, retry handling and validation.</p></article>
+        <article class="card"><h3>Progressive web app foundation</h3><p>The project includes Vite PWA and Workbox tooling as part of its web application stack.</p></article>
+      </div>
+    </section>
+    <section id="payment">
+      <div class="eyebrow">05 / Payment integration</div><h2>Implemented integration logic; not a live-payment claim.</h2>
+      <p class="lead">The codebase contains Paystack initialization, verification and webhook-handling logic. The webhook path includes HMAC SHA-512 signature validation.</p>
+      <div class="callout"><strong>Known issue found during source review</strong><p>Inspected Edge Function code uses a GH₵50 booking-fee value, while inspected database migration logic references GH₵100. The discrepancy must be reconciled across the client, Edge Functions and database workflows before live payment use. The verification path also needs fail-closed handling when database confirmation fails.</p></div>
+      <p class="muted">Accordingly, this portfolio page does not claim that live student-facing payment processing is enabled, end-to-end correct or production-validated.</p>
+    </section>
+    <section id="boundaries">
+      <div class="eyebrow">06 / Verification boundaries</div><h2>What this case study does—and does not—claim.</h2>
+      <div class="grid two">
+        <article class="card"><h3>Visible in source</h3><ul><li>Role-aware student, host and admin route areas.</li><li>Supabase authentication and PostgreSQL-backed workflows.</li><li>Named reservation RPC call sites.</li><li>Paystack integration code in Edge Functions.</li><li>PWA tooling in the frontend stack.</li></ul></article>
+        <article class="card"><h3>Not independently verified</h3><ul><li>Complete live RLS policy and database grant coverage.</li><li>End-to-end payment correctness or live transactions.</li><li>Full automated test-suite results.</li><li>Production deployment, monitoring, backup and recovery.</li><li>Commercial adoption, active users or transaction volume.</li></ul></article>
+      </div>
+      <p class="muted" style="margin-top:18px">Interactive maps are not presented as implemented; the inspected map experience indicates that the feature is coming soon. No production-readiness or security-audit certification is implied.</p>
+    </section>
+    <section id="next">
+      <div class="eyebrow">07 / Next engineering priorities</div><h2>Close the gaps before production claims.</h2>
+      <ol class="list"><li>Reconcile booking-fee configuration across all payment paths.</li><li>Validate payment amount, currency, reference, ownership and booking state; fail closed if database confirmation fails.</li><li>Test webhook idempotency and duplicate-event handling.</li><li>Audit RLS policies, function grants and direct API authorization.</li><li>Add automated tests for role boundaries, reservation concurrency and payment failure paths.</li><li>Run controlled end-to-end tests in Supabase and Paystack sandbox environments.</li><li>Verify deployment operations, observability, backups and recovery.</li></ol>
+    </section>
+    <section id="about">
+      <div class="eyebrow">08 / About the work</div><h2>Independent product development.</h2>
+      <p class="lead">CampusCribs was independently developed as a full-stack portfolio project using React, TypeScript, Supabase and PostgreSQL, with AI-assisted development tooling. The case study focuses on the product structure, backend workflows, technical decisions and honest verification boundaries visible in the codebase.</p>
+      <p style="margin-top:22px"><a href="https://github.com/nas4pf10-ship-it/campuscribscc">Private application repository (access restricted)</a></p>
+    </section>
+  </main>
+  <footer><div class="footerrow"><span>CampusCribs · Technical case study</span><span>Independent portfolio project · Evidence-led documentation</span></div></footer>
+</div>
+</body>
+</html>
